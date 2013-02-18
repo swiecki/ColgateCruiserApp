@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://twitter.github.com/bootstrap/examples/sticky-footer.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Colgate Cruiser Schedule</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- CSS -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+        text-align:center !important;
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+      html {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      .container {
+        width: auto;
+        max-width: 680px;
+      }
+
+      label.radio {
+        width: 40px;
+        margin: auto;
+        margin-top: 20px;
+      }
+
+      </style>
+      <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+      <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+      <![endif]-->
+
+      <!-- Fav and touch icons -->
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+      <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
+      <style type="text/css"></style></head>
+
+      <body>
+
+
+        <!-- Part 1: Wrap all page content here -->
+        <div id="wrap">
+
+          <!-- Begin page content -->
+          <div class="container">
+            <div class="page-header">
+              <h1>Cruiser Schedule</h1>
+            </div>
+            <form class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label" for="inputEmail">I want to get from:</label>
+                <div class="controls">
+                  <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="inputPassword">I want to go to:</label>
+                <div class="controls">
+                  <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                I want to get there:
+                <label class="radio">
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                  ASAP
+                </label>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <button type="submit" class="btn btn-large btn-info">Go!</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div id="push"></div>
+        </div>
+
+        <div id="footer">
+          <div class="container">
+            <p class="muted credit"> </p>
+          </div>
+        </div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="ios-orientationchange-fix.js"></script>
+    <script src="stops.js"></script>
+    <script src="routes.js"></script>
+    <script type="text/javascript">
+    var facts = ["Ratio of students to faculty: 9 to 1 (2,964 students : 286 faculty)", "There are over 170 student organizations on campus", "Top graduate schools alumni attend include Columbia, NYU, Harvard, and Cornell.", "The Colgate Finance Club is one of the best clubs on campus!"];
+    $(function() {
+      var randomnumber=Math.floor(Math.random()*4)
+      $("p.muted").text("Random Colgate Fact: " + facts[randomnumber]);
+    });
+
+    /***
+    Interesting code starts hereish.
+    ***/
+    
+    //stop class
+    function Stop(name, times){
+      this.name = name;
+      this.times = times;
+    }
+    //route class
+    function Route(name, stops){
+      this.name = name;
+      this.stops = stops;
+    }
+    //define a stop- 
+    /*note: Date syntax is: 
+    new Date(year, month, day [, hour, minute, second, millisecond]);
+    full schedule available at http://www.colgate.edu/docs/d_about_maps_colgatecruiser/colgate-cruiser-2012-2013-schedule-10-29-12.pdf?sfvrsn=2
+    */
+    var a1 = new Stop("Village Green", [new Date(1975, 1, 1, 7, 30), new Date(1975, 1, 1, 8, 30), new Date(1975, 1, 1, 9, 30), new Date(1975, 1, 1, 10, 30), new Date(1975, 1, 1, 11, 30), new Date(1975, 1, 1, 12, 30), new Date(1975, 1, 1, 13, 30), new Date(1975, 1, 1, 14, 30), new Date(1975, 1, 1, 15, 30), new Date(1975, 1, 1, 16, 30), new Date(1975, 1, 1, 18, 30), new Date(1975, 1, 1, 19, 0), new Date(1975, 1, 1, 20, 0), new Date(1975, 1, 1, 21, 0), new Date(1975, 1, 1, 22, 0), new Date(1975, 1, 1, 23, 0), new Date(1975, 1, 1, 0, 0), new Date(1975, 1, 1, 1, 0), new Date(1975, 1, 1, 2, 0)]);
+    //TODO: add rest of cruiser stops and routes
+    //stops go in stops.js
+    //routes go in routes.js
+    var CruiserA = new Route("A",[a1]);
+
+    //return next 3 times cruiser gets the start
+    function BoardCruiserSoonest(start, dest, currentTime){
+      //find a route with both stops on it. Look at the start stop's time (the .getHours() and getMinutes() calls will be helpful since times are mostly the same each day) and figure out based on current time when the cruiser will be at the start.
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+    }
+
+    //return time to board cruiser so you get at destination by arrival time
+    function GetThereBy(start, dest, arrivalTime){
+
+      var hours = arrivalTime.getHours();
+      var minutes = arrivalTime.getMinutes();
+    }
+    </script>
+  </body>
+  </html>
