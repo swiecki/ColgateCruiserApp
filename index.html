@@ -3,8 +3,8 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>Colgate Cruiser Schedule</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -154,8 +154,13 @@
     <script type="text/javascript">
     var facts = ["Ratio of students to faculty: 9 to 1 (2,964 students : 286 faculty)", "There are over 170 student organizations on campus", "Top graduate schools alumni attend include Columbia, NYU, Harvard, and Cornell.", "The Colgate Finance Club is one of the best clubs on campus!"];
     $(function() {
+      //Set random message
       var randomnumber=Math.floor(Math.random()*4)
       $("p.muted").text("Random Colgate Fact: " + facts[randomnumber]);
+      // Hide the address bar!
+      setTimeout(function(){
+        window.scrollTo(0, 1);
+      }, 0);
     });
 
     /***
